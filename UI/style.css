@@ -1,5 +1,3 @@
-@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
-
 body {
   font-family: Arial, sans-serif;
   background: #f4f4f4;
@@ -8,10 +6,10 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 60vw;
   margin: 41px auto;
   background: white;
-  padding: 10x;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
@@ -25,9 +23,8 @@ body {
 }
 
 #categories {
-  margin-top: 20px;
   padding: 5px;
-  background: #e9ecef;
+  background-color: #e9ecef;
   border-radius: 6px;
   width: 180px;
 }
@@ -36,24 +33,21 @@ body {
   color: grey;
 }
 
-.results {
-  background-color: #f8f8f8;
-  border: 2px solid black;
-  margin-top: 20px;
+#productTable {
+  width: auto;      /* shrink to content */
+  max-width: 100%; /* optional, prevents it from being too wide */
+  margin: 20px auto; /* centers horizontally */
 }
 
-.results thead th {
-  background-color: #333;
+.scrollable-table {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.scrollable-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #333; /* match your existing header style */
   color: white;
-  font-size: 18px;
-  border-bottom: 3px solid yellow;
-}
-
-.results tbody tr {
-  border-bottom: 1px solid #ccc;
-}
-
-.results td {
-  padding: 12px;
-  color: #333;
+  z-index: 1; 
 }

@@ -34,6 +34,7 @@ categories.addEventListener("change", () => {
     submit.disabled = false;
 });
 submit.addEventListener("click", () => {
+    products.innerHTML = "";
     filterChoice = categories.value;
     var productsFetch = fetch('http://127.0.0.1:5000/products/categories/' + filterChoice).then(response => {
         if (!response.ok) {

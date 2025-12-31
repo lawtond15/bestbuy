@@ -58,11 +58,11 @@ var categoriesFetch = fetch('http://127.0.0.1:5000/categories').then(response =>
   });
 
 categories.addEventListener("change", () => {
-  // submit.disabled = (categories.value === "")
   submit.disabled = false
 });
 
 submit.addEventListener("click", () => {
+  products.innerHTML = "";
   filterChoice = categories.value
     var productsFetch = fetch('http://127.0.0.1:5000/products/categories/'+filterChoice).then(response => {
     if(!response.ok) {
@@ -87,14 +87,12 @@ submit.addEventListener("click", () => {
         const tbody = products.createTBody();
 
         for (const product of data.content) {
-            const row = tbody.insertRow();
             const tr = tbody.insertRow();
             for (const key of keys) {
                 const cell = tr.insertCell();
                 cell.textContent = String(product[key])
             }
         }
-      
     })
 })
 
