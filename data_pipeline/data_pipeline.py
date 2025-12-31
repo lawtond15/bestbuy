@@ -1,9 +1,12 @@
 import pandas as pd
+import os
 import requests
 import json
 from tenacity import retry, stop_after_attempt, wait_fixed
 from utils._constants import *
 from database.crud import *
+
+api_key = os.getenv("API_KEY") 
 
 def bestbuy_data_pull(endpoint: str, fields: str):
     last_page = 2
@@ -14,7 +17,7 @@ def bestbuy_data_pull(endpoint: str, fields: str):
             'show': fields,           
             'page': 1,
             'pageSize': '100',
-            'apiKey': API_KEY,
+            'apiKey': api_key,
         }
 
     while params['page'] <= last_page:
