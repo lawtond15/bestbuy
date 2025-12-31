@@ -1,0 +1,59 @@
+@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 41px auto;
+  background: white;
+  padding: 10x;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header {
+  background: blue;
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+  text-decoration: underline solid yellow;
+}
+
+#categories {
+  margin-top: 20px;
+  padding: 5px;
+  background: #e9ecef;
+  border-radius: 6px;
+  width: 180px;
+}
+
+#option-text {
+  color: grey;
+}
+
+.results {
+  background-color: #f8f8f8;
+  border: 2px solid black;
+  margin-top: 20px;
+}
+
+.results thead th {
+  background-color: #333;
+  color: white;
+  font-size: 18px;
+  border-bottom: 3px solid yellow;
+}
+
+.results tbody tr {
+  border-bottom: 1px solid #ccc;
+}
+
+.results td {
+  padding: 12px;
+  color: #333;
+}
