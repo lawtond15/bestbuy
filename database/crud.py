@@ -6,8 +6,6 @@ from utils.helpers import camel_case_to_snake_case, remove_NaN
 
 engine = create_engine(f'postgresql+psycopg2:///{DB_NAME}')
 
-# region SELECT 
-
 def get_rows(table_name: str):
     query = text(f'SELECT * FROM {table_name}')
     df = pd.read_sql(query, con=engine)
@@ -17,6 +15,7 @@ def get_rows(table_name: str):
     
     return cleaned_results
 
+#Unimplemented, saving for future
 def get_rows_by_field_values(table_name: str, field: str, values: list[str]):
     value_string = ''
     for value in values:
@@ -35,10 +34,6 @@ def get_rows_by_field_value_contains(table_name: str, field: str, value:str):
 
     return cleaned_results
 
-# endregion
-
-# region INSERT
-
 def insert_row(table_name: str, row: pd.Series):
     df = pd.DataFrame([row])
     df.to_sql(table_name, engine, if_exists = 'append', index = False)
@@ -51,16 +46,7 @@ def insert_rows(table_name: str, df: pd.DataFrame) -> str:
     else:
         raise ValueError('Error: Table name does not exist.')
     
-# endregion
-
-# region UPDATE
-    
-# def update_rows(table_name: str, updates: list[dict]):
-
-# endregion
-
-# region DELETE 
-
+#Unimplemented, saving for future 
 def delete_rows_by_field(table_name: str, field: str, values: list[int]):
     value_string = ''
     for value in values:
@@ -70,10 +56,3 @@ def delete_rows_by_field(table_name: str, field: str, values: list[int]):
     with engine.connect() as conn:
         conn.execute(query)
         conn.commit()
-
-# endregion
-
-if __name__ == '__main__':
-    with open('testing1234.txt', 'a') as file:
-        file.write(str(get_rows('products')))
-    # print(products)

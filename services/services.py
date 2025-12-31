@@ -49,7 +49,3 @@ def products_by_field(field: str, value: str) -> Response:
         message: str = 'Error: ' + str(e)
 
     return Response(message, content)
-
-if __name__ == '__main__':
-    categories = bestbuy_data_pull('categories', CATEGORIES_FIELDS)
-    insert_new_categories(categories)

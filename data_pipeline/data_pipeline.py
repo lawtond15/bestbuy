@@ -40,7 +40,3 @@ def bestbuy_data_pull(endpoint: str, fields: str):
 @retry(stop=stop_after_attempt(3), wait=wait_fixed(3))
 def get_data_with_retry(url, params: json):
     return requests.get(url, params)
-
-if __name__ == '__main__':
-    products: pd.DataFrame = bestbuy_data_pull('products', PRODUCTS_FIELDS)
-    insert_rows('products', products)
