@@ -1,0 +1,21 @@
+{
+  "name": "learning-frontend-3.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "lite-server",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "vite": "^7.3.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  }
+}
