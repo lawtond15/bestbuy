@@ -71,6 +71,11 @@ submit.addEventListener("click", () => {
     return response.json() as Promise<APIResponse<ProductRow>>;
   })
     .then(data => {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+      tooltipTriggerList.forEach(el => {
+        new (window as any).bootstrap.Tooltip(el);
+      });
+
         const firstProduct = data.content[0];
         if (!firstProduct) return;
 
@@ -91,6 +96,9 @@ submit.addEventListener("click", () => {
             for (const key of keys) {
                 const cell = tr.insertCell();
                 cell.textContent = String(product[key])
+                cell.setAttribute("data-bs-toggle", "tooltip");
+                cell.setAttribute("data-bs-placement", "top");
+                cell.setAttribute("title", String(product[key]));
             }
         }
     })
