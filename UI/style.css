@@ -51,3 +51,10 @@ body {
   color: white;
   z-index: 1; 
 }
+
+td {
+  max-width: 200px;        /* set the max width of the cell */
+  white-space: nowrap;      /* prevent text from wrapping */
+  overflow: hidden;         /* hide overflow text */
+  text-overflow: ellipsis;  /* add "..." for overflow */
+}
