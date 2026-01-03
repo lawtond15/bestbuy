@@ -1,4 +1,4 @@
-.container {
+.listings-page .container {
   max-width: 60vw;
   margin: 41px auto;
   background: white;
@@ -7,7 +7,7 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.header {
+.listings-page .header {
   background: blue;
   text-align: center;
   margin-bottom: 20px;
@@ -15,29 +15,29 @@
   text-decoration: underline solid yellow;
 }
 
-#categories {
+.listings-page #categories {
   padding: 5px;
   background-color: #e9ecef;
   border-radius: 6px;
   width: 180px;
 }
 
-#option-text {
+.listings-page #option-text {
   color: grey;
 }
 
-#productTable {
+.listings-page #productTable {
   width: auto;      /* shrink to content */
   max-width: 100%; /* optional, prevents it from being too wide */
   margin: 20px auto; /* centers horizontally */
 }
 
-.scrollable-table {
+.listings-page .scrollable-table {
   max-height: 60vh;
   overflow-y: auto;
 }
 
-.scrollable-table thead th {
+.listings-page .scrollable-table thead th {
   position: sticky;
   top: 0;
   background-color: #333; /* match your existing header style */
@@ -45,7 +45,7 @@
   z-index: 1; 
 }
 
-td {
+.listings-page td {
   max-width: 200px;        /* set the max width of the cell */
   white-space: nowrap;      /* prevent text from wrapping */
   overflow: hidden;         /* hide overflow text */
