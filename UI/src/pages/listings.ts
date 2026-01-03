@@ -2,6 +2,7 @@ import "./listings.css";
 
 export function ListingsPage() {
   const container = document.createElement("div");
+  container.className = "listings-page"
 
   container.innerHTML = `
     <h1 class="header">BestBuy Product Listings</h1>
