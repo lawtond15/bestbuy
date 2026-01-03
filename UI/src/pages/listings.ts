@@ -1,3 +1,5 @@
+import "./listings.css";
+
 export function ListingsPage() {
   const container = document.createElement("div");
 
