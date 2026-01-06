@@ -15,7 +15,7 @@ export function PipelinePage() {
     <div id="message"></div>
 
     <div class="table-responsive scrollable-table">
-      <table id="pipelineLogTable" class="table table-bordered table-sm table-striped results mx-auto">
+      <table id="pipelineLogTable" class="table table-bordered table-sm table-striped results">
         <thead>
           <th>Date</th>
           <th>Status</th>
