@@ -22,3 +22,8 @@ export interface ProductRow{
       subclass: string,
       url: string
   }
+
+export interface PipelineLogRow{
+    date: Date,
+    status: string
+}

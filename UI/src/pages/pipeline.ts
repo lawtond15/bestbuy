@@ -1,5 +1,5 @@
 import "./pipeline.css";
-import type {APIResponse} from "../types/api"
+import type {APIResponse, PipelineLogRow} from "../types/api"
 
 export function PipelinePage() {
   const div = document.createElement("div");
@@ -15,8 +15,11 @@ export function PipelinePage() {
     <div id="message"></div>
 
     <div class="table-responsive scrollable-table">
-      <table id="pipelineLogTable"
-        class="table table-bordered table-sm table-striped results mx-auto">
+      <table id="pipelineLogTable" class="table table-bordered table-sm table-striped results mx-auto">
+        <thead>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
       </table>
     </div>
   `;
@@ -24,21 +27,40 @@ export function PipelinePage() {
   const refreshButton = div.querySelector("#refreshData") as HTMLButtonElement
   const loading = div.querySelector("#loading") as HTMLSpanElement
   const message = div.querySelector("#message") as HTMLDivElement
+  const pipelineLogTable = div.querySelector("#pipelineLogTable") as HTMLTableElement
+
+  async function generatePipelineLogTbl() {
+    pipelineLogTable.querySelectorAll("tbody").forEach(tb => tb.remove());
+    const pipelineResposne = fetch('/pipeline/log').then(response => {
+      return response.json() as Promise<APIResponse<PipelineLogRow>>
+    }).then(data => {
+      const tbody = pipelineLogTable.createTBody()
+      for (const row of data.content) {
+        const tr = tbody.insertRow()
+        const cell1 = tr.insertCell()
+        cell1.textContent = row.date.toString()
+        const cell2 = tr.insertCell()
+        cell2.textContent = row.status
+      }
+    })
+  }
+
+  generatePipelineLogTbl()
 
   refreshButton.addEventListener("click", async () => {
     refreshButton.disabled = true;
     loading.style.display = "inline"
     message.textContent = ""
     try{
-      const response = await fetch('/pipeline/refresh', {
+      const refreshResponse = await fetch('/pipeline/refresh', {
         method: 'POST'
       })
 
-      if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
+      if (!refreshResponse.ok) {
+        throw new Error(`Request failed: ${refreshResponse.status}`);
       }
 
-      const data = await response.json() as APIResponse<unknown>
+      const data = await refreshResponse.json() as APIResponse<unknown>
 
       message.textContent = data.message
       message.style.color = "green"
@@ -51,6 +73,7 @@ export function PipelinePage() {
     } finally {
       loading.style.display = "none"
       refreshButton.disabled = false;
+      generatePipelineLogTbl()
     }
   })
 

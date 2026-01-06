@@ -51,15 +51,24 @@ def products_by_field(field: str, value: str) -> Response:
 
     return Response(message, content)
 
-def pipeline():
+def pull_pipeline_log():
     content = ''
     try:
-        products: pd.DataFrame = bestbuy_data_pull('products', PRODUCTS_FIELDS)
-        insert_rows('products', products)
-        categories: pd.DataFrame = bestbuy_data_pull('categories', CATEGORIES_FIELDS)
-        insert_new_categories(categories)
+        content: list[dict] = get_rows('pipeline_log')
+        message: str = 'Success'
+    except Exception as ex:
+        message: str = 'Failure'
+
+    return Response(message, content)
+
+def refresh_pipeline():
+    content = ''
+    try:
+        # products: pd.DataFrame = bestbuy_data_pull('products', PRODUCTS_FIELDS)
+        # insert_rows('products', products)
+        # categories: pd.DataFrame = bestbuy_data_pull('categories', CATEGORIES_FIELDS)
+        # insert_new_categories(categories)
         pipeline_refresh_log: pd.DataFrame = pd.DataFrame({'date': [datetime.today()], 'status': ['Success']})
-        print(pipeline_refresh_log)
         message: str = 'Success'
     except Exception as e:
         message: str = 'Error: ' + str(e)

@@ -38,9 +38,13 @@ def get_categories() -> dict:
 def get_category(id: int) -> dict:
     return categories_by_field('id', id).__dict__
 
+@app.route('/pipeline/log')
+def get_pipeline_log() -> dict:
+    return pull_pipeline_log().__dict__
+
 @app.route('/pipeline/refresh', methods=['POST'])
-def pipeline_refresh():
-    return pipeline().__dict__
+def pipeline_refresh() -> dict:
+    return refresh_pipeline().__dict__
 
 if __name__ == "__main__":
     app.run(debug=True)
