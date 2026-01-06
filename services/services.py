@@ -64,10 +64,10 @@ def pull_pipeline_log():
 def refresh_pipeline():
     content = ''
     try:
-        # products: pd.DataFrame = bestbuy_data_pull('products', PRODUCTS_FIELDS)
-        # insert_rows('products', products)
-        # categories: pd.DataFrame = bestbuy_data_pull('categories', CATEGORIES_FIELDS)
-        # insert_new_categories(categories)
+        products: pd.DataFrame = bestbuy_data_pull('products', PRODUCTS_FIELDS)
+        insert_rows('products', products)
+        categories: pd.DataFrame = bestbuy_data_pull('categories', CATEGORIES_FIELDS)
+        insert_new_categories(categories)
         pipeline_refresh_log: pd.DataFrame = pd.DataFrame({'date': [datetime.today()], 'status': ['Success']})
         message: str = 'Success'
     except Exception as e:
