@@ -13,3 +13,29 @@ body {
   color: white;
   text-decoration: underline solid yellow;
 }
+
+.table {
+  width: auto;      /* shrink to content */
+  max-width: 100%; /* optional, prevents it from being too wide */
+  margin: 20px auto; /* centers horizontally */
+}
+
+.scrollable-table {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.scrollable-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #333; /* match your existing header style */
+  color: white;
+  z-index: 1; 
+}
+
+td {
+  max-width: 200px;        /* set the max width of the cell */
+  white-space: nowrap;      /* prevent text from wrapping */
+  overflow: hidden;         /* hide overflow text */
+  text-overflow: ellipsis;  /* add "..." for overflow */
+}
