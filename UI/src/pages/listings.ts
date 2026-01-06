@@ -1,4 +1,5 @@
 import "./listings.css";
+import type {APIResponse, CategoryRow, ProductRow} from "../types/api"
 
 export function ListingsPage() {
   const container = document.createElement("div");
@@ -28,31 +29,6 @@ export function ListingsPage() {
   const products = container.querySelector("#productTable") as HTMLTableElement;
   const submit = container.querySelector("#filterSubmit") as HTMLButtonElement;
   let filterChoice;
-
-  interface APIResponse<T> {
-      message: string;
-      content: T[]
-  }
-
-  interface CategoryRow {
-      id: string,
-      key_id: number,
-      name: string
-  }
-
-  interface ProductRow{
-      class: string,
-      categories: string,
-      customer_review_average: number,
-      customer_review_count: number,
-      id: number,
-      name: string,
-      regular_price: number,
-      sale_price: number,
-      sku: string,
-      subclass: string,
-      url: string
-  }
 
   const columnFriendlyNames = {
       class: 'Class',

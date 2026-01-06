@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime
 from database.crud import *
 from data_pipeline.data_pipeline import *
 from utils._constants import CATEGORIES_FIELDS
@@ -47,5 +48,23 @@ def products_by_field(field: str, value: str) -> Response:
         message: str = 'Success'
     except Exception as e:
         message: str = 'Error: ' + str(e)
+
+    return Response(message, content)
+
+def pipeline():
+    content = ''
+    try:
+        products: pd.DataFrame = bestbuy_data_pull('products', PRODUCTS_FIELDS)
+        insert_rows('products', products)
+        categories: pd.DataFrame = bestbuy_data_pull('categories', CATEGORIES_FIELDS)
+        insert_new_categories(categories)
+        pipeline_refresh_log: pd.DataFrame = pd.DataFrame({'date': [datetime.today()], 'status': ['Success']})
+        print(pipeline_refresh_log)
+        message: str = 'Success'
+    except Exception as e:
+        message: str = 'Error: ' + str(e)
+        pipeline_refresh_log: pd.DataFrame = pd.DataFrame({'date': [datetime.today()], 'status': ['Failure']})
+
+    insert_rows('pipeline_log', pipeline_refresh_log)
 
     return Response(message, content)
