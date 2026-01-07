@@ -1,3 +1,8 @@
 .pipeline-page .header {
   text-align: left;
 }
+
+.pipeline-page #pipelineLogTable{
+  width: 50%;
+  margin: 20px 0;
+}
