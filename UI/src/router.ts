@@ -8,11 +8,19 @@ const routes: Record<string, () => HTMLElement> = {
 
 export function router() {
   const app = document.getElementById("app")!;
-  const path = window.location.pathname;
+
+  let path = window.location.pathname;
+
+  // normalize trailing slash
+  if (path.length > 1 && path.endsWith("/")) {
+    path = path.slice(0, -1);
+  }
+
   const page = routes[path] ?? ListingsPage;
 
-    console.log("Routing to:", path, page.name);
+  console.log("Routing to:", path, page.name);
 
   app.innerHTML = "";
   app.appendChild(page());
 }
+
